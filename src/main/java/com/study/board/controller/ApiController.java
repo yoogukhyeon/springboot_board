@@ -20,9 +20,6 @@ public class ApiController {
 
     @PostMapping("/signup")
     public ResponseEntity userSignup(@RequestBody SignUpFormDTO fromDTO){
-        System.out.println("::::::::::" + fromDTO);
-
         return memberService.signup(fromDTO);
-
     }
 }
