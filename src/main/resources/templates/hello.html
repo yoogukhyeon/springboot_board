@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Hello</title>
+
+  <style>
+    .img {
+      width:200px;
+      height: 200px
+    }
+    img {
+      width: 100%
+    }
+
+  </style>
+</head>
+<body>
+  <h1>hello world!</h1>
+  <h3 th:text="${name}"></h3>
+  <div class="img">
+    <img th:src="${img}">
+  </div>
+
+
+</body>
+</html>
