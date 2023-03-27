@@ -1,7 +1,7 @@
 package com.study.board.controller;
 
 import com.study.board.dto.SignUpFormDTO;
-import com.study.board.service.MemebrService;
+import com.study.board.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class ApiController {
 
-    private final MemebrService memberService;
+    private final MemberService memberService;
 
     @GetMapping("/name")
     public String name() {

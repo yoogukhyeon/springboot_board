@@ -15,14 +15,14 @@ import java.util.Optional;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class MemberServicelmpl implements MemebrService {
+public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
 
     public ResponseEntity signup(SignUpFormDTO formDTO) {
 
         Optional<Member> member = memberRepository.findById(formDTO.getId());
 
-        if (member.isEmpty()) {
+        if (!member.isPresent()) {
             Member newMember = Member.builder()
                     .id(formDTO.getId())
                     .password(formDTO.getPassword())
@@ -38,3 +38,9 @@ public class MemberServicelmpl implements MemebrService {
         }
     }
 }
+
+
+
+
+
+
