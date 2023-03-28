@@ -8,6 +8,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -17,6 +18,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
+    private final BCryptPasswordEncoder encoder;
 
     public ResponseEntity signup(SignUpFormDTO formDTO) {
 
@@ -25,7 +27,7 @@ public class MemberServiceImpl implements MemberService {
         if (!member.isPresent()) {
             Member newMember = Member.builder()
                     .id(formDTO.getId())
-                    .password(formDTO.getPassword())
+                    .password(encoder.encode(formDTO.getPassword()))
                     .name(formDTO.getName())
                     .role(MemberRole.USER)
                     .build();
