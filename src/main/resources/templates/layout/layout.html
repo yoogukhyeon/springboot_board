@@ -10,8 +10,8 @@
     <nav>
         <li>
             <button><a th:href="@{/signup}">회원가입</a></button>
-            <button><a th:href="@{/signin}">로그인</a></button>
-            <button onclick='logout()'>로그아웃</button>
+            <button class="signin"><a th:href="@{/signin}">로그인</a></button>
+            <button class="logout" onclick='logout()'>로그아웃</button>
             <button><a th:href="@{/list}">글 목록</a></button>
         </li>
     </nav>
@@ -23,6 +23,22 @@
 <th:block layout:fragment="script"></th:block>
 
 <script th:inline="javascript">
+     function logout(){
+        if (localStorage.getItem('id') != null) {
+            localStorage.removeItem('id');
+            alert('로그아웃 완료');
+            location.reload();
+        } else {
+            alert('로그인하세요!');
+        }
+    }
+
+    const id = localStorage.getItem('id');
+    if(id){
+        $('.signin').css('display', 'none')
+    } else {
+        $('.logout').css('display', 'none')
+    }
 
 </script>
 </body>

@@ -26,7 +26,6 @@ public class ApiController {
 
     @PostMapping("/login")
     public  ResponseEntity login(@RequestBody LoginDTO loginDTO){
-        System.out.println(":::::::::::::::::" + loginDTO);
         return memberService.login(loginDTO);
     }
 }

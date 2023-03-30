@@ -28,7 +28,7 @@ public class MemberServiceImpl implements MemberService {
         if (!member.isPresent()) {
             Member newMember = Member.builder()
                     .id(formDTO.getId())
-                    .password(encoder.encode(formDTO.getPassword()))
+                    .password(encoder.encode(formDTO.getPassword())) //bcrypt 암호화 인코딩
                     .name(formDTO.getName())
                     .role(MemberRole.USER)
                     .build();
@@ -51,7 +51,9 @@ public class MemberServiceImpl implements MemberService {
             return new ResponseEntity("해당 아이디를 가진 회원이 존재하지 않습니다.", HttpStatus.OK);
         }
 
-        if (memberEntity.getPassword().equals(loginDTO.getPassword())){
+        String dbPassword = memberEntity.getPassword();
+        //bcrypt 인코딩된 암호를 비교
+        if (encoder.matches(loginDTO.getPassword(), dbPassword) ){
             return new ResponseEntity("success", HttpStatus.OK);
         } else {
             return new ResponseEntity("비밀번호가 일치하지 않습니다.", HttpStatus.OK);
