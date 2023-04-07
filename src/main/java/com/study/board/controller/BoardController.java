@@ -20,4 +20,9 @@ public class BoardController {
     public String signin() {
         return "signin";
     }
+
+    @GetMapping("/new")
+    public String newPost() {
+        return "new";
+    }
 }
